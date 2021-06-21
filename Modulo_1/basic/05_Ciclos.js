@@ -22,3 +22,10 @@ var persona = {
 for (const key in persona) {
     console.log(persona[key])
 }
+
+var iterable = [1,2,3,4,5];
+var iterable2 = "Bryan";
+
+for (const valor of iterable2) {
+    console.log(valor);
+}
