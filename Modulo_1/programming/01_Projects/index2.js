@@ -6,9 +6,9 @@ const app = express();
 
 //Routes
 
-const { RouterIndex } = require('./routes/index');
+const { RouterIndex } = require('./routes/index2');
 
-app.use("/", RouterIndex);
+app.use("/Deber", RouterIndex);
 //app.use("/Deber", RouterIndex);
 // app.use("/user", RouterIndex);
 // app.use("/user/data", RouterIndex);
