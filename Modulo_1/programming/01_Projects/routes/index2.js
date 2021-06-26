@@ -8,23 +8,77 @@ const router = Router();
 
 //Creacion de los endpoint
 router
-    .get("/", (req, res) => {
-        res.send("Hola mundo 2");
+    .get("/users", (req, res) => {
+
+        data.map((persona) => {
+            persona.first_name = persona.first_name.toUpperCase();
+            persona.last_name = persona.last_name.toUpperCase();
+
+            return persona;
+
+        })
+
+        res.json({
+            msg: "Usuarios",
+            body:[data]
+        })
+        res.end();
     })
-    .get("/codigo",(req, res) => {
+    .get("/users-query",(req, res) => {
 
         const { query: {id} } = req;
     
         var filtrarID = data.filter((persona) => persona.id == id);
 
-        res.json(filtrarID);
-    
-    })
-    .get('/:nombre', (req, res) => {
+        if (id == null){
+            res.json({
+                msg: "Usuarios",
+                body:[data]
+            })
+        }else{
 
-        const { params: {nombre} } = req;
-        var filtrarNombre = data.filter((persona) => persona.first_name == nombre);
+            res.json({
+                msg: "Usuarios Filtrados por ID",
+                body:[filtrarID]
+            })
+
+        }
+        res.end();
+    })
+    .get('/users-params/:apellido', (req, res) => {
+
+        const { params: {apellido} } = req;
+        var filtrarNombre = data.filter((persona) => persona.last_name == apellido);
+
+        var traermail = filtrarNombre.map((miMail) => {
+            return miMail.email;
+        })
+
+        var bandera = false;
+
+        data.forEach(persona => {
+            if(persona.last_name == apellido){
+                bandera = true;
+            }
+        });
+
+        if (bandera === true) {
+            
+            res.json({
+                msg: "Usuarios Filtrados por Apellido",
+                body:[traermail]
+            })
+
+        } else {
+            res.json({
+                msg: `El Apellido ${apellido} no existe en nuestra base de datos`,
+                body:[]
+            })
+        }
+
         res.json(filtrarNombre);
+
+        res.end()
     });
 
 //Exportamos las rutas
