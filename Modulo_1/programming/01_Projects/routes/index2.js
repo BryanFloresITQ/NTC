@@ -76,7 +76,7 @@ router
             })
         }
 
-        res.json(filtrarNombre);
+        res.json(filtrarNombre)
 
         res.end()
     });
