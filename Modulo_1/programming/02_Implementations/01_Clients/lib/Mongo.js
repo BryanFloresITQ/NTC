@@ -1,7 +1,7 @@
 const { MongoClient } = require("mongodb");
 
 const DB_NAME = "clients";
-const URL = "mongodb+srv://bryan:Listo123@modulo-1.g70fe.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";;
+const URL = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@modulo-1.g70fe.mongodb.net/${DB_NAME}?retryWrites=true&w=majority`;
 
 var MongoConnection = () => new Promise(async (resolve, reject) => {
     try {
